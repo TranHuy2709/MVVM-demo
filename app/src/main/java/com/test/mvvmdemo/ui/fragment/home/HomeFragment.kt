@@ -29,30 +29,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun initView() {
-        binding!!.edtUserName.addTextChangedListener(provideTextWatcher {
-            homeViewModel.onUserNameChange(it)
-        })
-        binding!!.edtUserName.addTextChangedListener(
-            provideTextWatcher {
-                homeViewModel.onPasswordChange(it)
-            }
-        )
         binding!!.homeVM = homeViewModel
     }
 
-    private fun provideTextWatcher(onchange: (String) -> Unit): TextWatcher {
-        return object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                p0?.let {
-                    onchange(it.toString())
-                }
-            }
-        }
-    }
 }

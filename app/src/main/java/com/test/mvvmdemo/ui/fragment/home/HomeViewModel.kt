@@ -1,5 +1,7 @@
 package com.test.mvvmdemo.ui.fragment.home
 
+import android.text.Editable
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,16 +20,18 @@ class HomeViewModel: ViewModel() {
         loginResponseLiveData.value= null
     }
 
-    fun onUserNameChange(userName:String){
-        curLoginUser.userName= userName
+    fun onUserNameChange(userName:Editable){
+        curLoginUser.userName= userName.toString()
+        Log.d("testXml", "Username $userName")
     }
 
-    fun onPasswordChange(password:String){
-        curLoginUser.password= password
+    fun onPasswordChange(password:Editable){
+        Log.d("testXml", "Password $password")
     }
 
     fun login()= viewModelScope.launch {
         val response= rohtoApi.login(curLoginUser)
+        Log.d("testApi", "Response ${response != null }")
         response?.let {
             loginResponseLiveData.value= it
         }

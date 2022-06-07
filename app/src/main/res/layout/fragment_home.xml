@@ -16,12 +16,16 @@
 
         <EditText
             android:id="@+id/edtUserName"
+            android:hint="Username"
+            android:afterTextChanged="@{(str)-> homeVM.onUserNameChange(str)}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/edtPassword"
+            android:afterTextChanged="@{(str)-> homeVM.onPasswordChange(str)}"
             android:layout_marginTop="30dp"
+            android:hint="Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
